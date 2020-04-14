@@ -19,13 +19,25 @@ export default class App extends Component {
     }));
   };
 
+  deleteTask = id => {
+    this.setState(prevState => ({
+      tasks: prevState.tasks.filter(task => task.id !== id),
+    }));
+  };
+
+  deleteContact = id => {
+    this.setState(prevState => ({
+      contacts: prevState.contacts.filter(item => item.id !== id),
+    }));
+  };
+
   render() {
     const { contacts } = this.state;
 
     return (
       <>
         <ContactForm onAddContact={this.addContact} />
-        <ContactList items={contacts} />
+        <ContactList items={contacts} onDeleteContact={this.deleteContact} />
       </>
     );
   }

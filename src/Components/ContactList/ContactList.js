@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const ContactList = ({ items }) => (
+const ContactList = ({ items, onDeleteContact }) => (
   <>
     {items.length > 0 && (
       <ul>
@@ -9,6 +9,14 @@ const ContactList = ({ items }) => (
           <li key={item.id}>
             <p>{item.name}</p>
             <p>{item.number}</p>
+            <button
+              type="button"
+              onClick={() => {
+                onDeleteContact(item.id);
+              }}
+            >
+              Delete
+            </button>
           </li>
         ))}
       </ul>
@@ -24,5 +32,6 @@ ContactList.propTypes = {
       number: PropTypes.string.isRequired,
     }),
   ).isRequired,
+  onDeleteContact: PropTypes.func.isRequired,
 };
 export default ContactList;
