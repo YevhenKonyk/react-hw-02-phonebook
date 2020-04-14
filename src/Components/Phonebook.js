@@ -2,10 +2,17 @@ import React, { Component } from 'react';
 import shortid from 'shortid';
 import ContactForm from './ContactForm/ContactForm';
 import ContactList from './ContactList/ContactList';
+import Filter from './Filter/Filter';
+
+const filterContacts = (contacts, filter) =>
+  contacts.filter(item =>
+    item.name.toLowerCase().includes(filter.toLowerCase()),
+  );
 
 export default class App extends Component {
   state = {
     contacts: [],
+    filter: '',
   };
 
   addContact = item => {
@@ -25,13 +32,28 @@ export default class App extends Component {
     }));
   };
 
+  handleFilterChange = e => this.setState({ filter: e.target.value });
+
+  clearFilter = () => this.setState({ filter: '' });
+
   render() {
-    const { contacts } = this.state;
+    const { contacts, filter } = this.state;
+    const filteredContacts = filterContacts(contacts, filter);
 
     return (
       <>
         <ContactForm onAddContact={this.addContact} />
-        <ContactList items={contacts} onDeleteContact={this.deleteContact} />
+        {contacts.length > 2 && (
+          <Filter
+            value={filter}
+            onChangeFilter={this.handleFilterChange}
+            onClearFilter={this.clearFilter}
+          />
+        )}
+        <ContactList
+          items={filteredContacts}
+          onDeleteContact={this.deleteContact}
+        />
       </>
     );
   }
