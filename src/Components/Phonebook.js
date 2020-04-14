@@ -19,12 +19,6 @@ export default class App extends Component {
     }));
   };
 
-  deleteTask = id => {
-    this.setState(prevState => ({
-      tasks: prevState.tasks.filter(task => task.id !== id),
-    }));
-  };
-
   deleteContact = id => {
     this.setState(prevState => ({
       contacts: prevState.contacts.filter(item => item.id !== id),
