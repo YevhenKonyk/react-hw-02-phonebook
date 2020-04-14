@@ -1,12 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import App from './Components/App';
+import Phonebook from './Components/Phonebook';
 import './base.css';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Phonebook />
   </React.StrictMode>,
   document.getElementById('root'),
 );
