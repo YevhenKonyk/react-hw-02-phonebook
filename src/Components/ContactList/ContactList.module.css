@@ -1,0 +1,36 @@
+.container {
+  width: 960px;
+  margin: 0 auto;
+  padding-top: 25px;
+  padding-bottom: 25px;
+  border: 1px solid rgba(5, 120, 252, 0.5);
+}
+
+.list {
+  padding: 0 10px 0 10px;
+}
+
+.listItem {
+}
+
+.listItem:not(:last-child) {
+  margin-bottom: 10px;
+}
+
+.name {
+  margin: 0;
+  margin-right: 5px;
+  padding: 0;
+  display: inline;
+  font-weight: 900;
+}
+
+.number {
+  margin: 0;
+  margin-right: 5px;
+  padding: 0;
+  display: inline;
+}
+
+.button {
+}
