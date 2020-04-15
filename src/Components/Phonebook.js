@@ -9,6 +9,11 @@ const filterContacts = (contacts, filter) =>
     item.name.toLowerCase().includes(filter.toLowerCase()),
   );
 
+const checkContactInList = (contact, contacts) =>
+  contacts.find(element =>
+    element.name.toLowerCase().includes(contact.name.toLowerCase()),
+  );
+
 export default class App extends Component {
   state = {
     contacts: [],
@@ -16,14 +21,21 @@ export default class App extends Component {
   };
 
   addContact = item => {
-    const newContact = {
-      id: shortid.generate(),
-      ...item,
-    };
+    const isContactInList = checkContactInList(item, this.state.contacts);
 
-    this.setState(prevState => ({
-      contacts: [...prevState.contacts, newContact],
-    }));
+    if (!isContactInList) {
+      const newContact = {
+        id: shortid.generate(),
+        ...item,
+      };
+
+      this.setState(prevState => ({
+        contacts: [...prevState.contacts, newContact],
+      }));
+    } else {
+      // eslint-disable-next-line no-alert
+      alert(`The contact ${item.name} is already in list`);
+    }
   };
 
   deleteContact = id => {
